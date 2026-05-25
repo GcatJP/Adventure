@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Adventure Island</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+
+      body {
+        position: relative;
+        background-color: #e63946;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        font-family: "Comic Sans MS", "Comic Sans", cursive;
+      }
+
+      .buttons {
+        display: flex;
+        gap: 30px;
+      }
+
+      .btn {
+        width: 500px;
+        height: 300px;
+        background-color: #96311a;
+        color: yellow;
+        border: 4px solid black;
+        border-radius: 15px;
+        font-family: "Comic Sans MS", "Comic Sans", cursive;
+        font-size: 60pt;
+        cursor: pointer;
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+      }
+
+      .btn:hover {
+        filter: brightness(1.3);
+      }
+
+      .corner-image {
+        position: fixed;
+        bottom: 30px;
+        right: 60px;
+        width: 150px;
+        height: auto;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="buttons">
+      <a class="btn" href="your-url-here">Units 1-10</a>
+      <a class="btn" href="your-url-here">Units 11-20</a>
+    </div>
+    <img src="images/Charlie_0.png" class="corner-image" />
+  </body>
+</html>
