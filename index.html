@@ -1,0 +1,179 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Adventure Island</title>
+    <style>
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      h1 {
+        position: relative;
+        color: orange;
+        -webkit-text-stroke: 2px yellow;
+        font-size: 92pt;
+        text-align: center;
+        margin-top: 70px;
+      }
+
+      .cat {
+        position: absolute;
+        top: -78px;
+        left: 830px;
+        height: 200px;
+        width: auto;
+      }
+
+      body {
+        min-height: 100vh;
+        background-color: #419ecc;
+        background-image:
+          radial-gradient(
+            circle at 20% 30%,
+            rgba(255, 80, 0, 0.25) 0%,
+            transparent 50%
+          ),
+          radial-gradient(
+            circle at 80% 70%,
+            rgba(150, 0, 0, 0.4) 0%,
+            transparent 50%
+          );
+        display: flex;
+        align-items: flex-start;
+        padding-top: 1px;
+        justify-content: center;
+        font-family: "Comic Sans MS", "Comic Sans", cursive;
+      }
+
+      .grid {
+        margin-top: 30px;
+        display: grid;
+        grid-template-columns: repeat(3, 400px);
+        grid-template-rows: repeat(2, 200px);
+        gap: 30px;
+      }
+
+      .box {
+        width: 400px;
+        height: 200px;
+        background-color: transparent;
+        border: 2px solid black;
+        border-radius: 15px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        text-decoration: none;
+        color: #ffe566;
+        font-size: 100pt;
+        line-height: 1.2;
+
+        padding: 4px;
+        box-shadow:
+          0 4px 12px rgba(0, 0, 0, 0.4),
+          inset 0 1px 0 rgba(255, 255, 255, 0.15);
+        transition:
+          transform 0.15s ease,
+          box-shadow 0.15s ease,
+          background-color 0.15s ease;
+        cursor: pointer;
+        -webkit-text-stroke: 1px orange;
+      }
+
+      .box img {
+        width: 150px;
+        height: 150px;
+        object-fit: contain;
+        padding-top: 1;
+        flex-shrink: 0;
+      }
+
+      .box span {
+        flex: 1;
+      }
+
+      .box:nth-child(1) {
+        background-color: #e63946;
+      }
+      .box:nth-child(2) {
+        background-color: #1b54de;
+      }
+      .box:nth-child(3) {
+        background-color: #2e9428;
+      }
+      .box:nth-child(4) {
+        background-color: orange;
+      }
+      .box:nth-child(5) {
+        background-color: #a8dadc;
+      }
+      .box:nth-child(6) {
+        background-color: #9b5de5;
+      }
+
+      .box:hover {
+        filter: brightness(1.2);
+        transform: translateY(-3px) scale(1.04);
+        box-shadow:
+          0 8px 20px rgba(0, 0, 0, 0.5),
+          inset 0 1px 0 rgba(255, 255, 255, 0.2);
+        color: #fff0a0;
+      }
+
+      .box:active {
+        transform: translateY(0px) scale(0.98);
+        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+      }
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>
+        Adventure Island <img class="cat" src="images/Charlie_walk.png" />
+      </h1>
+      <div class="grid">
+        <a class="box" href="#" title="Adventure Island">
+          <img src="images/img_kevin0.png" alt="" />
+          <span>0</span>
+          <img src="images/img_sami0.png" alt="" />
+        </a>
+        <a class="box" href="#" title="Adventure Island">
+          <img src="images/Sami1.png" alt="" />
+          <span>1</span>
+          <img src="images/Kevin1.png" alt="" />
+        </a>
+        <a class="box" href="#" title="Adventure Island">
+          <img src="images/Sami2.png" alt="" />
+          <span>2</span>
+          <img src="images/Kevin2.png" alt="" />
+        </a>
+        <a class="box" href="#" title="Adventure Island">
+          <img src="images/Kevin3.png" alt="" />
+          <span>3</span>
+          <img src="images/Sami3.png" alt="" />
+        </a>
+        <a class="box" href="#" title="Adventure Island">
+          <img src="images/Sami4.png" alt="" />
+          <span>4</span>
+          <img src="images/Kevin4.png" alt="" />
+        </a>
+        <a class="box" href="#" title="Adventure Island">
+          <img src="images/Kevin5.png" alt="" />
+          <span>5</span>
+          <img src="images/Sami5.png" alt="" />
+        </a>
+      </div>
+    </div>
+  </body>
+</html>
