@@ -12,26 +12,9 @@
         margin: 0;
         padding: 0;
       }
-      h1 {
-        position: relative;
-        color: orange;
-        -webkit-text-stroke: 2px #96311a;
-        font-size: 92pt;
-        text-align: center;
-        margin-top: 70px;
-      }
-
-      .cat {
-        position: absolute;
-        top: -78px;
-        left: 820px;
-        height: 200px;
-        width: auto;
-      }
 
       body {
         min-height: 100vh;
-        background-image: url("images/beach.jpg");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -41,6 +24,24 @@
         justify-content: center;
         font-family:
           "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Comic Neue", cursive;
+      }
+
+      @media (orientation: portrait) {
+        body {
+          background-image: url("images/Main.port.jpg");
+        }
+      }
+
+      @media (orientation: landscape) {
+        body {
+          background-image: url("images/Main.cover.jpg");
+        }
+      }
+
+      .header-image {
+        width: 100%;
+        height: auto;
+        display: block;
       }
 
       .grid {
@@ -121,26 +122,17 @@
         transform: translateY(0px) scale(0.98);
         box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
       }
+
       .container {
         display: flex;
         flex-direction: column;
         align-items: center;
         gap: 10px;
       }
+
       @media (max-width: 768px) {
         body {
           padding: 0;
-        }
-
-        h1 {
-          font-size: 28pt;
-          margin-top: 20px;
-        }
-
-        .cat {
-          height: 70px;
-          left: 280px;
-          top: -40px;
         }
 
         .grid {
@@ -162,9 +154,7 @@
   </head>
   <body>
     <div class="container">
-      <h1>
-        Adventure Island <img class="cat" src="images/Charlie.main.png" />
-      </h1>
+      <img class="header-image" src="images/Main.cover.jpg" />
       <div class="grid">
         <a class="box" href="Book0.html/Book0.html" title="Adventure Island">
           <img src="images/img_kevin0.png" alt="" />
