@@ -15,37 +15,22 @@
 
       body {
         min-height: 100vh;
+        background-image: url("images/Main.cover.jpg");
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
+        background-attachment: fixed;
         display: flex;
-        align-items: flex-start;
-        padding-top: 1px;
-        justify-content: center;
+        flex-direction: column;
+        align-items: center;
+        padding-top: 0;
+        justify-content: flex-start;
         font-family:
           "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Comic Neue", cursive;
       }
 
-      @media (orientation: portrait) {
-        body {
-          background-image: url("images/Main.port.jpg");
-        }
-      }
-
-      @media (orientation: landscape) {
-        body {
-          background-image: url("images/Main.cover.jpg");
-        }
-      }
-
-      .header-image {
-        width: 100%;
-        height: auto;
-        display: block;
-      }
-
       .grid {
-        margin-top: 30px;
+        margin-top: 300px;
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 15px;
@@ -154,7 +139,6 @@
   </head>
   <body>
     <div class="container">
-      <img class="header-image" src="images/Main.cover.jpg" />
       <div class="grid">
         <a class="box" href="Book0.html/Book0.html" title="Adventure Island">
           <img src="images/img_kevin0.png" alt="" />
@@ -188,5 +172,18 @@
         </a>
       </div>
     </div>
+    <script>
+      function updateHeader() {
+        const img = document.getElementById("headerImg");
+        if (window.matchMedia("(orientation: landscape)").matches) {
+          img.src = "images/Main.cover.jpg";
+        } else {
+          img.src = "images/Main.port.jpg";
+        }
+      }
+
+      updateHeader();
+      window.addEventListener("resize", updateHeader);
+    </script>
   </body>
 </html>
