@@ -113,6 +113,18 @@
         flex-direction: column;
         align-items: center;
         gap: 10px;
+        width: 100%;
+      }
+
+      @media (orientation: portrait) {
+        body {
+          background-image: none;
+          background-color: #419ecc;
+        }
+
+        .grid {
+          margin-top: 50px;
+        }
       }
 
       @media (max-width: 768px) {
@@ -172,18 +184,5 @@
         </a>
       </div>
     </div>
-    <script>
-      function updateHeader() {
-        const img = document.getElementById("headerImg");
-        if (window.matchMedia("(orientation: landscape)").matches) {
-          img.src = "images/Main.cover.jpg";
-        } else {
-          img.src = "images/Main.port.jpg";
-        }
-      }
-
-      updateHeader();
-      window.addEventListener("resize", updateHeader);
-    </script>
   </body>
 </html>
