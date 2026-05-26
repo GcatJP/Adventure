@@ -154,35 +154,57 @@
       <div class="grid">
         <a class="box" href="Book0.html/Book0.html" title="Adventure Island">
           <img src="images/img_kevin0.png" alt="" />
-          <span>0</span>
+          <span id="box0">0</span>
           <img src="images/img_sami0.png" alt="" />
         </a>
         <a class="box" href="#" title="Adventure Island">
           <img src="images/Sami1.png" alt="" />
-          <span>1</span>
+          <span id="box1">1</span>
           <img src="images/Kevin1.png" alt="" />
         </a>
         <a class="box" href="#" title="Adventure Island">
           <img src="images/Sami2.png" alt="" />
-          <span>2</span>
+          <span id="box2">2</span>
           <img src="images/Kevin2.png" alt="" />
         </a>
         <a class="box" href="#" title="Adventure Island">
           <img src="images/Kevin3.png" alt="" />
-          <span>3</span>
+          <span id="box3">3</span>
           <img src="images/Sami3.png" alt="" />
         </a>
         <a class="box" href="#" title="Adventure Island">
           <img src="images/Sami4.png" alt="" />
-          <span>4</span>
+          <span id="box4">4</span>
           <img src="images/Kevin4.png" alt="" />
         </a>
         <a class="box" href="#" title="Adventure Island">
           <img src="images/Kevin5.png" alt="" />
-          <span>5</span>
+          <span id="box5">5</span>
           <img src="images/Sami5.png" alt="" />
         </a>
       </div>
     </div>
+    <script>
+      const landscapeText = ["0", "1", "2", "3", "4", "5"];
+      const portraitText = [
+        "Book 0",
+        "Book 1",
+        "Book 2",
+        "Book 3",
+        "Book 4",
+        "Book 5",
+      ];
+
+      function updateText() {
+        const isPortrait = window.matchMedia("(orientation: portrait)").matches;
+        const texts = isPortrait ? portraitText : landscapeText;
+        texts.forEach((text, i) => {
+          document.getElementById("box" + i).textContent = text;
+        });
+      }
+
+      updateText();
+      window.addEventListener("resize", updateText);
+    </script>
   </body>
 </html>
