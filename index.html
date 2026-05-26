@@ -1,210 +1,369 @@
 <!doctype html>
 <html lang="en">
+  <!-- ============================================================
+     ADVENTURE ISLAND — index.html
+     ============================================================
+     CUSTOMISE THIS SECTION:
+       • PAGE_TITLE  — text shown in the browser tab
+       • HEADING     — the big h1 displayed on screen
+       • books[]     — one entry per button:
+             label : number shown in landscape  (e.g. "0")
+             url   : destination when tapped
+             imgL  : path/URL for the LEFT  image inside the button
+             imgR  : path/URL for the RIGHT image inside the button
+                     (set imgR the same as imgL if you want one image)
+
+     ORIENTATION BEHAVIOUR:
+       • Portrait  → 1 × 6 vertical stack, labels read "Book 0" … "Book 5"
+       • Landscape → 2 × 3 grid,           labels read "0" … "5"
+       • Landscape background is blue (#1565C0); portrait is black.
+
+     FONT STACK:
+       iOS / macOS  → Chalkboard SE  (system font, no download needed)
+       Android / PC → Comic Sans MS  (system font) or Comic Neue (Google Font fallback)
+     ============================================================ -->
+
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0,
+        maximum-scale=1.0, user-scalable=no"
+    />
     <title>Adventure Island</title>
+
+    <!-- Comic Neue — fallback web font for devices without Comic Sans -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@700&display=swap"
+      rel="stylesheet"
+    />
+
     <style>
+      /* ----------------------------------------------------------
+       RESET & ROOT
+    ---------------------------------------------------------- */
       *,
       *::before,
       *::after {
         box-sizing: border-box;
         margin: 0;
         padding: 0;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      :root {
+        /* Font stack: Chalkboard SE (iOS/macOS) → Comic Sans (Windows/Android) → Comic Neue (web fallback) */
+        --font-chalk:
+          "Chalkboard SE", "Chalkboard", "Comic Neue", "Comic Sans MS", cursive;
+
+        /* Colours */
+        --colour-bg-portrait: #26a0d9;
+        --colour-bg-landscape: #26a0d9;
+        --colour-btn-face: #ffd600;
+        --colour-btn-active: #ffc200;
+        --colour-btn-border: #000000;
+        --colour-heading-text: orange;
+        --colour-btn-border: #000000;
+      }
+
+      html,
+      body {
+        width: 100%;
+        height: 100%;
       }
 
       body {
-        min-height: 100vh;
-        background-image: url("images/Main.cover.jpg");
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        background-attachment: fixed;
+        font-family: var(--font-chalk);
+        background: var(--colour-bg-portrait);
         display: flex;
         flex-direction: column;
         align-items: center;
-        padding-top: 0;
         justify-content: flex-start;
-        font-family:
-          "Comic Sans MS", "Comic Sans", "Chalkboard SE", "Comic Neue", cursive;
+        min-height: 100vh;
+        min-height: 100dvh;
+        overflow: hidden;
+        transition: background 0.3s ease;
       }
 
-      .grid {
-        margin-top: 300px;
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 15px;
-        width: 95vw;
-        max-width: 1260px;
-      }
-
-      .box {
+      /* ----------------------------------------------------------
+       HEADING
+    ---------------------------------------------------------- */
+      h1 {
+        font-family: var(--font-chalk);
+        color: var(--colour-heading-text);
         width: 100%;
-        height: 150px;
-        background-color: transparent;
-        border: 2px solid black;
-        border-radius: 15px;
+        text-align: center;
+        letter-spacing: 0.03em;
+        flex-shrink: 0;
+        -webkit-text-stroke: 2px yellow;
+      }
+
+      /* ----------------------------------------------------------
+       GRID WRAPPER  (centres the grid on screen)
+    ---------------------------------------------------------- */
+      .grid-wrapper {
+        flex: 1;
         display: flex;
         align-items: center;
         justify-content: center;
-        text-align: center;
-        text-decoration: none;
-        color: #ffe566;
-        font-size: 80pt;
-        line-height: 1.2;
-        padding: 4px;
-        box-shadow:
-          0 4px 12px rgba(0, 0, 0, 0.4),
-          inset 0 1px 0 rgba(255, 255, 255, 0.15);
-        transition:
-          transform 0.15s ease,
-          box-shadow 0.15s ease,
-          background-color 0.15s ease;
-        cursor: pointer;
-        -webkit-text-stroke: 1px orange;
-      }
-
-      .box img {
-        width: 80px;
-        height: 80px;
-        object-fit: contain;
-        flex-shrink: 0;
-      }
-
-      .box span {
-        flex: 1;
-      }
-
-      .box:nth-child(1) {
-        background-color: #e63946;
-      }
-      .box:nth-child(2) {
-        background-color: #1b54de;
-      }
-      .box:nth-child(3) {
-        background-color: #2e9428;
-      }
-      .box:nth-child(4) {
-        background-color: orange;
-      }
-      .box:nth-child(5) {
-        background-color: #a8dadc;
-      }
-      .box:nth-child(6) {
-        background-color: #9b5de5;
-      }
-
-      .box:hover {
-        filter: brightness(1.2);
-        transform: translateY(-3px) scale(1.04);
-        box-shadow:
-          0 8px 20px rgba(0, 0, 0, 0.5),
-          inset 0 1px 0 rgba(255, 255, 255, 0.2);
-        color: #fff0a0;
-      }
-
-      .box:active {
-        transform: translateY(0px) scale(0.98);
-        box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
-      }
-
-      .container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 10px;
         width: 100%;
       }
 
-      @media (orientation: portrait) {
+      /* ----------------------------------------------------------
+       BUTTON  (each book link)
+       Images sit flush-left and flush-right INSIDE the button.
+       The label is centred in the remaining space.
+    ---------------------------------------------------------- */
+      .btn {
+        font-family: var(--font-chalk);
+        font-weight: bold;
+        color: var(--colour-btn-border);
+        background: var(--colour-btn-face);
+        border: 2px solid var(--colour-btn-border);
+        border-radius: 10px;
+        text-decoration: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        overflow: hidden;
+        -webkit-user-select: none;
+        user-select: none;
+        transition:
+          transform 0.1s ease,
+          background 0.15s ease;
+      }
+
+      .btn:active {
+        transform: scale(0.97);
+        background: var(--colour-btn-active);
+      }
+
+      /* Images inside the button */
+      .btn-img {
+        display: block;
+        flex-shrink: 0;
+        object-fit: cover;
+        height: 100%;
+        max-height: 90%;
+        width: auto;
+        margin: 0 8px;
+      }
+
+      /* Label between the images */
+      .btn-label {
+        flex: 1;
+        text-align: center;
+        line-height: 1.1;
+        padding: 0 0.25em;
+        color: yellow;
+        -webkit-text-stroke: 2px orange;
+      }
+
+      /* ----------------------------------------------------------
+       LANDSCAPE  — blue background, 2 × 3 grid
+    ---------------------------------------------------------- */
+      @media screen and (orientation: landscape) {
         body {
-          background-image: none;
-          background-color: #419ecc;
+          background: linear-gradient(to bottom, #4ea9e5, #486f8d);
+          overflow: hidden;
+        }
+
+        h1 {
+          font-size: clamp(2.5rem, 8vw, 9rem);
+          padding: 0.1em 0.5em;
+          margin-top: 8vh;
+          margin-bottom: -8vh;
+        }
+
+        .grid-wrapper {
+          padding: 1vh 2vw 2vh;
+          margin-top: 2vh;
         }
 
         .grid {
-          margin-top: 50px;
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          grid-template-rows: repeat(2, 1fr);
+          gap: clamp(6px, 1.4vw, 16px);
+          width: min(94vw, 920px);
+        }
+
+        .btn {
+          font-size: clamp(1.1rem, 8vw, 9rem);
+          height: clamp(48px, 50vh, 150px);
+        }
+
+        .btn-img {
+          height: clamp(36px, 19vh, 140px);
         }
       }
 
-      @media (max-width: 768px) {
+      /* ----------------------------------------------------------
+       PORTRAIT  — black background, 1 × 6 stack
+    ---------------------------------------------------------- */
+      @media screen and (orientation: portrait) {
         body {
-          padding: 0;
+          overflow-y: auto;
+        }
+
+        h1 {
+          font-size: clamp(1.5rem, 9vw, 3.2rem);
+          padding: 0.3em 0.5em;
+        }
+
+        .grid-wrapper {
+          padding: 2vw 5vw 4vw;
         }
 
         .grid {
+          display: grid;
           grid-template-columns: 1fr;
-          width: 90vw;
+          gap: clamp(6px, 4vw, 14px);
+          width: 100%;
+          max-width: 480px;
         }
 
-        .box {
-          height: 100px;
-          font-size: 28pt;
+        .btn {
+          font-size: clamp(1rem, 5.5vw, 1.9rem);
+          height: clamp(54px, 26vw, 100px);
         }
 
-        .box img {
-          width: 50px;
-          height: 50px;
+        .btn-img {
+          height: clamp(44px, 19vw, 80px);
         }
       }
     </style>
   </head>
+
   <body>
-    <div class="container">
-      <div class="grid">
-        <a class="box" href="Book0.html/Book0.html" title="Adventure Island">
-          <img src="images/img_kevin0.png" alt="" />
-          <span id="box0">0</span>
-          <img src="images/img_sami0.png" alt="" />
-        </a>
-        <a class="box" href="#" title="Adventure Island">
-          <img src="images/Sami1.png" alt="" />
-          <span id="box1">1</span>
-          <img src="images/Kevin1.png" alt="" />
-        </a>
-        <a class="box" href="#" title="Adventure Island">
-          <img src="images/Sami2.png" alt="" />
-          <span id="box2">2</span>
-          <img src="images/Kevin2.png" alt="" />
-        </a>
-        <a class="box" href="#" title="Adventure Island">
-          <img src="images/Kevin3.png" alt="" />
-          <span id="box3">3</span>
-          <img src="images/Sami3.png" alt="" />
-        </a>
-        <a class="box" href="#" title="Adventure Island">
-          <img src="images/Sami4.png" alt="" />
-          <span id="box4">4</span>
-          <img src="images/Kevin4.png" alt="" />
-        </a>
-        <a class="box" href="#" title="Adventure Island">
-          <img src="images/Kevin5.png" alt="" />
-          <span id="box5">5</span>
-          <img src="images/Sami5.png" alt="" />
-        </a>
+    <h1>Adventure Island</h1>
+
+    <div class="grid-wrapper">
+      <div class="grid" id="main-grid">
+        <!-- Buttons are built by the script below -->
       </div>
     </div>
-    <script>
-      const landscapeText = ["0", "1", "2", "3", "4", "5"];
-      const portraitText = [
-        "Book 0",
-        "Book 1",
-        "Book 2",
-        "Book 3",
-        "Book 4",
-        "Book 5",
-      ];
 
-      function updateText() {
-        const isPortrait = window.matchMedia("(orientation: portrait)").matches;
-        const texts = isPortrait ? portraitText : landscapeText;
-        texts.forEach((text, i) => {
-          document.getElementById("box" + i).textContent = text;
+    <script>
+      /* ==========================================================
+         BOOK DATA
+         Update each entry with your real URLs and image paths.
+         imgL = image on the LEFT  side of the button
+         imgR = image on the RIGHT side of the button
+         (Use the same path for both if you want a single image repeated.)
+      ========================================================== */
+      const books = [
+        {
+          label: "0",
+          url: "https://example.com/book0",
+          imgL: "images/Kevin0.png",
+          imgR: "images/Sami0.png",
+          colour: "#d63e3e",
+        },
+        {
+          label: "1",
+          url: "https://example.com/book1",
+          imgL: "images/Kevin1.png",
+          imgR: "images/Sami1.png",
+          colour: "#1d52c9",
+        },
+        {
+          label: "2",
+          url: "https://example.com/book2",
+          imgL: "images/Kevin2.png",
+          imgR: "images/Sami2.png",
+          colour: "#4b8e3b",
+        },
+        {
+          label: "3",
+          url: "https://example.com/book3",
+          imgL: "images/Kevin3.png",
+          imgR: "images/Sami3.png",
+          colour: "#f5a638",
+        },
+        {
+          label: "4",
+          url: "https://example.com/book4",
+          imgL: "images/Kevin4.png",
+          imgR: "images/Sami4.png",
+          colour: "#a8dadc",
+        },
+        {
+          label: "5",
+          url: "https://example.com/book5",
+          imgL: "images/Kevin5.png",
+          imgR: "images/Sami5.png",
+          colour: "#9b5de5",
+        },
+      ];
+      /* ==========================================================
+         BUILD GRID
+         Called on load and whenever orientation changes.
+         Portrait  → label reads "Book 0" … "Book 5"
+         Landscape → label reads "0" … "5"
+      ========================================================== */
+      function isPortrait() {
+        return window.matchMedia("(orientation: portrait)").matches;
+      }
+
+      function buildGrid() {
+        const grid = document.getElementById("main-grid");
+        const portrait = isPortrait();
+
+        grid.innerHTML = "";
+
+        books.forEach(function (book) {
+          /* --- anchor (the yellow button itself) --- */
+          var link = document.createElement("a");
+          link.className = "btn";
+          link.href = book.url;
+          link.style.background = book.colour;
+
+          /* --- left image --- */
+          var imgL = document.createElement("img");
+          imgL.className = "btn-img";
+          imgL.src = book.imgL;
+          imgL.alt = "";
+          imgL.setAttribute("aria-hidden", "true");
+
+          /* --- centred label --- */
+          var label = document.createElement("span");
+          label.className = "btn-label";
+          label.textContent = portrait ? "Book " + book.label : book.label;
+
+          /* --- right image --- */
+          var imgR = document.createElement("img");
+          imgR.className = "btn-img";
+          imgR.src = book.imgR;
+          imgR.alt = "";
+          imgR.setAttribute("aria-hidden", "true");
+
+          link.appendChild(imgL);
+          link.appendChild(label);
+          link.appendChild(imgR);
+          grid.appendChild(link);
         });
       }
 
-      updateText();
-      window.addEventListener("resize", updateText);
+      /* Run on first load */
+      buildGrid();
+
+      /* Re-run when device rotates */
+      var resizeTimer;
+      window.addEventListener("resize", function () {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(buildGrid, 150);
+      });
+      window
+        .matchMedia("(orientation: portrait)")
+        .addEventListener("change", buildGrid);
+      window
+        .matchMedia("(orientation: landscape)")
+        .addEventListener("change", buildGrid);
     </script>
   </body>
 </html>
