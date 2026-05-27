@@ -42,8 +42,8 @@
 
     <style>
       /* ----------------------------------------------------------
-       RESET & ROOT
-    ---------------------------------------------------------- */
+                             RESET & ROOT
+                          ---------------------------------------------------------- */
       *,
       *::before,
       *::after {
@@ -59,13 +59,11 @@
           "Chalkboard SE", "Chalkboard", "Comic Neue", "Comic Sans MS", cursive;
 
         /* Colours */
-        --colour-bg-portrait: #26a0d9;
-        --colour-bg-landscape: #26a0d9;
+
         --colour-btn-face: #ffd600;
         --colour-btn-active: #ffc200;
         --colour-btn-border: #000000;
         --colour-heading-text: orange;
-        --colour-btn-border: #000000;
       }
 
       html,
@@ -76,7 +74,7 @@
 
       body {
         font-family: var(--font-chalk);
-        background: var(--colour-bg-portrait);
+        background: linear-gradient(to bottom, #4ea9e5, #486f8d);
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -88,8 +86,8 @@
       }
 
       /* ----------------------------------------------------------
-       HEADING
-    ---------------------------------------------------------- */
+                             HEADING
+                          ---------------------------------------------------------- */
       h1 {
         font-family: var(--font-chalk);
         color: var(--colour-heading-text);
@@ -101,8 +99,8 @@
       }
 
       /* ----------------------------------------------------------
-       GRID WRAPPER  (centres the grid on screen)
-    ---------------------------------------------------------- */
+                             GRID WRAPPER  (centres the grid on screen)
+                          ---------------------------------------------------------- */
       .grid-wrapper {
         flex: 1;
         display: flex;
@@ -112,10 +110,10 @@
       }
 
       /* ----------------------------------------------------------
-       BUTTON  (each book link)
-       Images sit flush-left and flush-right INSIDE the button.
-       The label is centred in the remaining space.
-    ---------------------------------------------------------- */
+                             BUTTON  (each book link)
+                             Images sit flush-left and flush-right INSIDE the button.
+                             The label is centred in the remaining space.
+                          ---------------------------------------------------------- */
       .btn {
         font-family: var(--font-chalk);
         font-weight: bold;
@@ -164,8 +162,8 @@
       }
 
       /* ----------------------------------------------------------
-       LANDSCAPE  — blue background, 2 × 3 grid
-    ---------------------------------------------------------- */
+                             LANDSCAPE  — blue background, 2 × 3 grid
+                          ---------------------------------------------------------- */
       @media screen and (orientation: landscape) {
         body {
           background: linear-gradient(to bottom, #4ea9e5, #486f8d);
@@ -201,13 +199,34 @@
           height: clamp(36px, 19vh, 140px);
         }
       }
+      @media screen and (orientation: landscape) and (max-height: 450px) {
+        body {
+          background: linear-gradient(to bottom, #4ea9e5, #486f8d);
+          overflow: hidden;
+        }
+        h1 {
+          font-size: clamp(0.8rem, 8vw, 10rem) !important;
+          padding: 0.5em 1em !important;
+          margin-top: -20px !important;
+        }
+        .grid-wrapper {
+          align-items: flex-start;
+          padding: 1vh 6vw 2vh;
+          margin-top: 4vh;
+        }
+
+        .btn {
+          height: clamp(40px, 30vh, 100px);
+        }
+      }
 
       /* ----------------------------------------------------------
-       PORTRAIT  — black background, 1 × 6 stack
-    ---------------------------------------------------------- */
+                             PORTRAIT  — black background, 1 × 6 stack
+                          ---------------------------------------------------------- */
       @media screen and (orientation: portrait) {
         body {
           overflow-y: auto;
+          background: linear-gradient(to bottom, #4ea9e5, #486f8d);
         }
 
         h1 {
@@ -234,6 +253,30 @@
 
         .btn-img {
           height: clamp(44px, 19vw, 80px);
+        }
+      }
+      @media screen and (orientation: portrait) and (max-width: 430px) {
+        h1 {
+          font-size: clamp(1rem, 9.5vw, 6rem) !important;
+          padding: 1em 0.8em !important;
+          -webkit-text-stroke: 2px yellow;
+        }
+
+        .grid-wrapper {
+          padding: 1vw 9vw 2vw !important;
+        }
+
+        .grid {
+          gap: 20px !important;
+        }
+
+        .btn {
+          height: clamp(50px, 30vw, 90px) !important;
+          font-size: clamp(50px, 10vw, 90px) !important;
+        }
+
+        .btn-img {
+          height: clamp(40px, 15vw, 70px) !important;
         }
       }
     </style>
@@ -321,7 +364,7 @@
           var link = document.createElement("a");
           link.className = "btn";
           link.href = book.url;
-          link.style.background = book.colour;
+          link.style.backgroundColor = book.colour;
 
           /* --- left image --- */
           var imgL = document.createElement("img");
