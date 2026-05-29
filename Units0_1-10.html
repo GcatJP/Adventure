@@ -115,7 +115,7 @@
          GRID WRAPPER
       ---------------------------------------------------------- */
       .grid-wrapper {
-        flex: 0;
+        flex: 1;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -293,6 +293,10 @@
          PORTRAIT IPHONE — 2 × 10 grid  (max-width: 430px)
       ---------------------------------------------------------- */
       @media screen and (orientation: portrait) and (max-width: 430px) {
+        body {
+          justify-content: flex-start !important;
+        }
+
         .back-btn {
           font-size: clamp(1rem, 4vw, 1.8rem) !important;
           padding: 0.3em 0.9em !important;
@@ -300,10 +304,10 @@
         }
 
         .grid-wrapper {
-          flex: 0 !important;
-          padding: 1vw 4vw 3vw !important;
-          margin-top: -4vh !important;
+          flex: 1 !important;
+          padding: 0 4vw !important;
           align-items: flex-start !important;
+          padding-top: 2vh !important;
         }
 
         .grid {
@@ -312,7 +316,6 @@
           gap: clamp(4px, 1.5vw, 10px) !important;
           width: 100% !important;
           max-width: 100% !important;
-          margin-top: -2vh !important;
         }
 
         .btn {
