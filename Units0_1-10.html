@@ -1,24 +1,19 @@
+Got it — from now on I'll always display the code as text so you can copy and
+paste directly. Here it is: ```html
 <!doctype html>
 <html lang="en">
   <!-- ============================================================
      ADVENTURE ISLAND — units.html
      ============================================================
      CUSTOMISE THIS SECTION:
-       • PAGE_TITLE  — text shown in the browser tab
-       • units[]     — one entry per button:
-             label  : text shown on the button (e.g. "1a")
-             url    : link to the embedded video page
-             colour : background colour of the button
+       • units[]  — label, url, colour for each button
+       • --bg     — background gradient (one line, same everywhere)
 
      GRID LAYOUT:
-       • Landscape (tablet/desktop) → 5 columns × 4 rows
-       • Landscape iPhone           → 4 columns × 5 rows
-       • Portrait (tablet/desktop)  → 2 columns × 10 rows
-       • Portrait iPhone            → 2 columns × 10 rows
-
-     FONT STACK:
-       iOS / macOS  → Chalkboard SE  (system font, no download needed)
-       Android / PC → Comic Sans MS  (system font) or Comic Neue (web fallback)
+       • Landscape tablet/desktop → 5 × 4
+       • Landscape iPhone         → 4 × 5
+       • Portrait tablet/desktop  → 2 × 10
+       • Portrait iPhone          → 2 × 10
      ============================================================ -->
 
   <head>
@@ -38,9 +33,6 @@
     />
 
     <style>
-      /* ----------------------------------------------------------
-         RESET & ROOT
-      ---------------------------------------------------------- */
       *,
       *::before,
       *::after {
@@ -54,28 +46,26 @@
         --font-chalk:
           "Chalkboard SE", "Chalkboard", "Comic Neue", "Comic Sans MS", cursive;
         --bg: linear-gradient(to bottom, #e7523f, #b91505);
-        --colour-btn-active: #ffc200;
         --colour-btn-border: #000000;
       }
 
-      html,
-      body {
+      html {
         width: 100%;
         height: 100%;
-        overflow-x: hidden;
+        overflow: hidden;
         max-width: 100vw;
       }
 
       body {
         font-family: var(--font-chalk);
         background: var(--bg);
+        width: 100%;
+        max-width: 100vw;
+        height: 100vh;
+        height: 100dvh;
+        overflow: hidden;
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: flex-start;
-        min-height: 100vh;
-        min-height: 100dvh;
-        overflow: hidden;
       }
 
       /* ----------------------------------------------------------
@@ -99,11 +89,8 @@
         transition:
           transform 0.1s ease,
           background 0.15s ease;
-        flex-shrink: 0;
         align-self: flex-start;
-        font-size: 1.2rem;
-        padding: 0.4em 1.2em;
-        margin: 10px 0 0 10px;
+        flex-shrink: 0;
       }
 
       .back-btn:active {
@@ -115,7 +102,6 @@
          GRID WRAPPER
       ---------------------------------------------------------- */
       .grid-wrapper {
-        flex: 1;
         display: flex;
         align-items: center;
         justify-content: center;
@@ -163,22 +149,18 @@
       }
 
       /* ----------------------------------------------------------
-         LANDSCAPE — 5 × 4 grid  (tablet / desktop)
+         LANDSCAPE — 5 × 4
       ---------------------------------------------------------- */
       @media screen and (orientation: landscape) {
-        body {
-          overflow: hidden;
-        }
-
         .back-btn {
-          font-size: clamp(1.2rem, 2vw, 2rem) !important;
-          padding: 0.3em 1em !important;
-          margin: 1.5vh 0 0 2vw !important;
+          font-size: clamp(1.2rem, 2vw, 2rem);
+          padding: 0.3em 1em;
+          margin: 1.5vh 0 0 2vw;
         }
 
         .grid-wrapper {
+          flex: 1;
           padding: 1vh 2vw 2vh;
-          margin-top: 0;
         }
 
         .grid {
@@ -195,7 +177,6 @@
         }
 
         .corner-img {
-          position: fixed;
           top: 0;
           right: 0;
           bottom: auto;
@@ -206,13 +187,13 @@
       }
 
       /* ----------------------------------------------------------
-         LANDSCAPE IPHONE — 4 × 5 grid  (max-height: 450px)
+         LANDSCAPE IPHONE — 4 × 5  (max-height: 450px)
       ---------------------------------------------------------- */
       @media screen and (orientation: landscape) and (max-height: 450px) {
         body {
           overflow: hidden;
-          width: 100vw !important;
-          overflow-x: hidden !important;
+          width: 100vw;
+          max-width: 100vw;
         }
 
         .back-btn {
@@ -221,23 +202,17 @@
           margin: 0.3vh 0 0 2vw !important;
         }
 
-        h1 {
-          margin-top: -4vh !important;
-          padding-top: 0 !important;
-        }
-
         .grid-wrapper {
+          flex: 1 !important;
           padding: 0 2vw 0 !important;
-          margin-top: 0 !important;
         }
 
         .grid {
-          display: grid;
           grid-template-columns: repeat(4, 1fr) !important;
           grid-template-rows: repeat(5, 1fr) !important;
           gap: clamp(2px, 0.5vw, 6px) !important;
           width: min(96vw, 800px) !important;
-          height: min(60vh, 205px) !important;
+          height: min(82vh, 360px) !important;
         }
 
         .btn {
@@ -250,18 +225,21 @@
           margin-right: 10px;
         }
       }
+
       /* ----------------------------------------------------------
-         PORTRAIT — 2 × 10 grid  (tablet / desktop)
+         PORTRAIT — 2 × 10
       ---------------------------------------------------------- */
       @media screen and (orientation: portrait) {
         body {
           overflow-y: auto;
+          height: auto;
+          min-height: 100dvh;
         }
 
         .back-btn {
-          font-size: clamp(1.2rem, 3vw, 2.5rem) !important;
-          padding: 0.4em 1em !important;
-          margin: 2vw 0 0 4vw !important;
+          font-size: clamp(1.2rem, 3vw, 2.5rem);
+          padding: 0.4em 1em;
+          margin: 2vw 0 0 4vw;
         }
 
         .grid-wrapper {
@@ -271,7 +249,6 @@
         .grid {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
-          grid-template-rows: repeat(10, 1fr);
           gap: clamp(6px, 2vw, 16px);
           width: 100%;
           max-width: 500px;
@@ -290,35 +267,36 @@
       }
 
       /* ----------------------------------------------------------
-         PORTRAIT IPHONE — 2 × 10 grid  (max-width: 430px)
+         PORTRAIT IPHONE — 2 × 10  (max-width: 430px)
+         To move grid up: decrease margin on .back-btn
+         To move grid down: increase margin on .back-btn
       ---------------------------------------------------------- */
       @media screen and (orientation: portrait) and (max-width: 430px) {
         body {
-          justify-content: flex-start !important;
+          overflow-y: auto;
+          height: auto;
+          min-height: 100dvh;
         }
 
         .back-btn {
           font-size: clamp(1rem, 4vw, 1.8rem) !important;
           padding: 0.3em 0.9em !important;
-          margin: 0 0 0 4vw !important;
+          margin: 1vw 0 0 4vw !important;
         }
 
         .grid-wrapper {
-          flex: 1 !important;
-          padding: 0 4vw !important;
-          align-items: flex-start !important;
+          padding: 1vw 4vw 4vw !important;
         }
 
         .grid {
           grid-template-columns: repeat(2, 1fr) !important;
-          grid-template-rows: repeat(10, 1fr) !important;
           gap: clamp(4px, 1.5vw, 10px) !important;
           width: 100% !important;
           max-width: 100% !important;
         }
 
         .btn {
-          font-size: clamp(0.9rem, 6vw, 13rem) !important;
+          font-size: clamp(0.9rem, 6vw, 2rem) !important;
           height: clamp(44px, 14vw, 90px) !important;
         }
 
@@ -332,15 +310,12 @@
   </head>
 
   <body>
-    <!-- Back button -->
     <a class="back-btn" href="Book0.html">← Back</a>
 
-    <!-- Button grid — built by script below -->
     <div class="grid-wrapper">
       <div class="grid" id="main-grid"></div>
     </div>
 
-    <!-- Corner image — replace src with your image path -->
     <img
       class="corner-img"
       src="images/Kevin0.2.png"
@@ -349,12 +324,6 @@
     />
 
     <script>
-      /* ==========================================================
-         UNIT DATA
-         Update each url with your real video page link.
-         Update each colour with the button background you want.
-         Labels run: 1a, 1b, 2a, 2b … 10a, 10b
-      ========================================================== */
       const units = [
         {
           label: "1a",
@@ -393,7 +362,6 @@
       function buildGrid() {
         const grid = document.getElementById("main-grid");
         grid.innerHTML = "";
-
         units.forEach(function (unit) {
           var link = document.createElement("a");
           link.className = "btn";
@@ -414,3 +382,4 @@
     </script>
   </body>
 </html>
+```
