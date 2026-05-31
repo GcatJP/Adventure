@@ -140,6 +140,9 @@
         .btn-small {
           font-size: clamp(1rem, 4vw, 6rem) !important;
         }
+        .btn-tiny {
+          font-size: clamp(1rem, 3vw, 5rem) !important;
+        }
 
         .corner-img {
           display: none !important;
@@ -207,7 +210,9 @@
           height: clamp(60px, 23vw, 110px);
           width: 100%;
         }
-
+        .btn-tiny {
+          font-size: clamp(1rem, 6vw, 4rem) !important;
+        }
         .corner-img {
           display: none !important;
         }
@@ -243,15 +248,12 @@
           font-size: clamp(0.9rem, 7vw, 2.5rem) !important;
           height: clamp(70px, 18vw, 100px) !important;
         }
+        .btn-tiny {
+          font-size: clamp(0.7rem, 6vw, 2rem) !important;
+        }
 
         .corner-img {
-          position: fixed;
-          bottom: 0 !important;
-          right: 0 !important;
-          top: auto;
-          width: clamp(30px, 6vw, 60px);
-          margin-bottom: 10px !important;
-          margin-right: 50px !important;
+          position: fixed !important;
         }
       }
     </style>
@@ -356,7 +358,7 @@
           label: "Homework",
           url: "https://vz-43f57e2e-ea3.b-cdn.net/8cdec5e3-b0fb-4272-8918-2bad7a1ef130/thumbnail.jpg",
           colour: "#3d6116",
-          small: true,
+          customClass: "btn-tiny",
         },
         {
           label: "8a",
@@ -410,6 +412,9 @@
           }
           if (unit.small) {
             link.classList.add("btn-small");
+          }
+          if (unit.customClass) {
+            link.classList.add(unit.customClass);
           }
           link.textContent = unit.label;
           grid.appendChild(link);
