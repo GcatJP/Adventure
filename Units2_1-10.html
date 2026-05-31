@@ -137,9 +137,17 @@
         .btn {
           font-size: clamp(0.8rem, 5vw, 8rem);
         }
+        .btn-small {
+          font-size: clamp(0.3rem, 1.5vw, 1rem) !important;
+        }
 
         .corner-img {
-          display: none !important;
+          top: 0;
+          right: 0;
+          bottom: auto;
+          width: clamp(50px, 10vw, 130px);
+          margin-top: 20px;
+          margin-right: 20px;
         }
       }
 
@@ -371,6 +379,7 @@
           label: "Review",
           url: "https://player.mediadelivery.net/play/581234/ee35437a-602b-4026-9856-fa2483136ee9",
           colour: "#7ab32e",
+          small: true,
         },
         {
           label: "Test",
@@ -395,6 +404,9 @@
           if (unit.border) {
             link.style.border = "2px solid " + unit.border;
             link.style.color = "yellow";
+          }
+          if (unit.small) {
+            link.classList.add("btn-small");
           }
           link.textContent = unit.label;
           grid.appendChild(link);
