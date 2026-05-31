@@ -147,7 +147,7 @@
       }
 
       /* ----------------------------------------------------------
-         LANDSCAPE — 5 × 4
+         LANDSCAPE — 6 × 4
       ---------------------------------------------------------- */
       @media screen and (orientation: landscape) {
         .back-btn {
@@ -162,6 +162,7 @@
         }
 
         .grid {
+          display: grid;
           grid-template-columns: repeat(6, 1fr);
           grid-template-rows: repeat(4, 1fr);
           gap: clamp(4px, 1vw, 12px);
@@ -205,6 +206,7 @@
         }
 
         .grid {
+          display: grid;
           grid-template-columns: repeat(4, 1fr) !important;
           grid-template-rows: repeat(6, 1fr) !important;
           gap: clamp(2px, 0.5vw, 6px) !important;
