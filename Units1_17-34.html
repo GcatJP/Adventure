@@ -67,36 +67,6 @@
       }
 
       /* ----------------------------------------------------------
-         BACK BUTTON
-      ---------------------------------------------------------- */
-      .back-btn {
-        font-family: var(--font-chalk);
-        font-weight: bold;
-        color: yellow;
-        background: rgba(0, 0, 0, 0.3);
-        border: 2px solid yellow;
-        border-radius: 10px;
-        text-decoration: none;
-        cursor: pointer;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        -webkit-user-select: none;
-        user-select: none;
-        -webkit-text-stroke: 1px orange;
-        transition:
-          transform 0.1s ease,
-          background 0.15s ease;
-        align-self: flex-start;
-        flex-shrink: 0;
-      }
-
-      .back-btn:active {
-        transform: scale(0.97);
-        background: rgba(0, 0, 0, 0.5);
-      }
-
-      /* ----------------------------------------------------------
          GRID WRAPPER
       ---------------------------------------------------------- */
       .grid-wrapper {
@@ -147,15 +117,9 @@
       }
 
       /* ----------------------------------------------------------
-         LANDSCAPE — 5 × 4
+         LANDSCAPE — 6 × 4
       ---------------------------------------------------------- */
       @media screen and (orientation: landscape) {
-        .back-btn {
-          font-size: clamp(1.2rem, 2vw, 2rem);
-          padding: 0.3em 1em;
-          margin: 1.5vh 0 0 2vw;
-        }
-
         .grid-wrapper {
           flex: 1;
           padding: 1vh 2vw 2vh;
@@ -163,11 +127,11 @@
 
         .grid {
           display: grid;
-          grid-template-columns: repeat(5, 1fr);
+          grid-template-columns: repeat(6, 1fr);
           grid-template-rows: repeat(4, 1fr);
           gap: clamp(4px, 1vw, 12px);
           width: min(96vw, 960px);
-          height: min(72vh, 600px);
+          height: min(82vh, 650px);
         }
 
         .btn {
@@ -194,20 +158,15 @@
           max-width: 100vw;
         }
 
-        .back-btn {
-          font-size: clamp(0.7rem, 1.5vw, 1.2rem) !important;
-          padding: 0.15em 0.6em !important;
-          margin: 0.3vh 0 0 2vw !important;
-        }
-
         .grid-wrapper {
           flex: 1 !important;
           padding: 0 2vw 0 !important;
         }
 
         .grid {
+          display: grid;
           grid-template-columns: repeat(4, 1fr) !important;
-          grid-template-rows: repeat(5, 1fr) !important;
+          grid-template-rows: repeat(6, 1fr) !important;
           gap: clamp(2px, 0.5vw, 6px) !important;
           width: min(96vw, 800px) !important;
           height: min(55vh, 240px) !important;
@@ -234,27 +193,23 @@
           min-height: 100dvh;
         }
 
-        .back-btn {
-          font-size: clamp(1.2rem, 3vw, 2.5rem);
-          padding: 0.4em 1em;
-          margin: 2vw 0 0 4vw;
-        }
-
         .grid-wrapper {
           padding: 2vw 4vw 4vw;
         }
 
         .grid {
           display: grid;
-          grid-template-columns: repeat(2, 1fr);
+          grid-template-columns: repeat(3, 1fr);
+          grid-template-rows: repeat(8, 1fr);
           gap: clamp(6px, 2vw, 16px);
           width: 100%;
-          max-width: 500px;
+          max-width: 600px;
         }
 
         .btn {
           font-size: clamp(1rem, 7vw, 4rem);
-          height: clamp(50px, 14vw, 75px);
+          height: clamp(60px, 23vw, 110px);
+          width: 100%;
         }
 
         .corner-img {
@@ -276,18 +231,15 @@
           min-height: 100dvh;
         }
 
-        .back-btn {
-          font-size: clamp(1rem, 4vw, 1.8rem) !important;
-          padding: 0.3em 0.9em !important;
-          margin: 1vw 0 0 4vw !important;
-        }
-
         .grid-wrapper {
           padding: 1vw 4vw 4vw !important;
+          padding-top: 2vh !important;
         }
 
         .grid {
-          grid-template-columns: repeat(2, 1fr) !important;
+          display: grid;
+          grid-template-columns: repeat(3, 1fr) !important;
+          grid-template-rows: repeat(8, 1fr) !important;
           gap: clamp(4px, 1.5vw, 10px) !important;
           width: 100% !important;
           max-width: 100% !important;
@@ -295,11 +247,11 @@
 
         .btn {
           font-size: clamp(0.9rem, 7vw, 2.5rem) !important;
-          height: clamp(44px, 13vw, 80px) !important;
+          height: clamp(70px, 18vw, 100px) !important;
         }
 
         .corner-img {
-          width: clamp(40px, 14vw, 80px) !important;
+          width: clamp(40px, 12vw, 60px) !important;
           margin-bottom: 10px;
           margin-right: 10px;
         }
@@ -308,8 +260,6 @@
   </head>
 
   <body>
-    <a class="back-btn" href="Book1.html">← Back</a>
-
     <div class="grid-wrapper">
       <div class="grid" id="main-grid"></div>
     </div>
@@ -324,104 +274,93 @@
     <script>
       const units = [
         {
-          label: "11a",
+          label: "Back",
+          url: "Book1.html",
+          colour: "rgba(0,0,0,0.4)",
+          border: "yellow",
+        },
+        {
+          label: "17",
           url: "https://player.mediadelivery.net/play/597166/fe17a2bc-d48b-472b-b0f1-a78c4cc5f904",
           colour: "#1a5276",
         },
         {
-          label: "11b",
+          label: "18a",
           url: "https://example.com/video-1b",
+          colour: "#0e2f44",
+        },
+        {
+          label: "18b",
+          url: "https://example.com/video-2a",
           colour: "#1a5276",
         },
+        { label: "19", url: "https://example.com/video-2b", colour: "#0e2f44" },
+        { label: "20", url: "https://example.com/video-3a", colour: "#154360" },
+        { label: "21", url: "https://example.com/video-3b", colour: "#0e2f44" },
         {
-          label: "12a",
-          url: "https://example.com/video-2a",
-          colour: "#154360",
-        },
-        {
-          label: "12b",
-          url: "https://example.com/video-2b",
-          colour: "#154360",
-        },
-        {
-          label: "13a",
-          url: "https://example.com/video-3a",
-          colour: "#0e2f44",
-        },
-        {
-          label: "13b",
-          url: "https://example.com/video-3b",
-          colour: "#0e2f44",
-        },
-        {
-          label: "14a",
+          label: "22a",
           url: "https://example.com/video-4a",
           colour: "#1a5276",
         },
         {
-          label: "14b",
+          label: "22b",
           url: "https://example.com/video-4b",
-          colour: "#1a5276",
-        },
-        {
-          label: "15a",
-          url: "https://example.com/video-5a",
           colour: "#154360",
         },
+        { label: "23", url: "https://example.com/video-5a", colour: "#0e2f44" },
+        { label: "24", url: "https://example.com/video-5b", colour: "#1a5276" },
+        { label: "25", url: "https://example.com/video-6a", colour: "#154360" },
+        { label: "26", url: "https://example.com/video-6b", colour: "#0e2f44" },
         {
-          label: "15b",
-          url: "https://example.com/video-5b",
-          colour: "#154360",
-        },
-        {
-          label: "16a",
-          url: "https://example.com/video-6a",
-          colour: "#0e2f44",
-        },
-        {
-          label: "16b",
-          url: "https://example.com/video-6b",
-          colour: "#0e2f44",
-        },
-        {
-          label: "17a",
+          label: "27a",
           url: "https://example.com/video-7a",
           colour: "#1a5276",
         },
         {
-          label: "17b",
+          label: "27b",
           url: "https://example.com/video-7b",
-          colour: "#1a5276",
+          colour: "#154360",
         },
         {
-          label: "18a",
+          label: "28",
           url: "https://example.com/video-8a",
-          colour: "#154360",
-        },
-        {
-          label: "18b",
-          url: "https://example.com/video-8b",
-          colour: "#154360",
-        },
-        {
-          label: "19a",
-          url: "https://example.com/video-9a",
           colour: "#0e2f44",
         },
+        { label: "29", url: "https://example.com/video-8b", colour: "#1a5276" },
         {
-          label: "19b",
+          label: "30",
+          url: "https://example.com/video-9a",
+          colour: "#154360",
+        },
+        {
+          label: "31",
           url: "https://example.com/video-9b",
           colour: "#0e2f44",
         },
         {
-          label: "20a",
+          label: "32",
           url: "https://example.com/video-10a",
           colour: "#1a5276",
         },
         {
-          label: "20b",
+          label: "33",
           url: "https://example.com/video-10b",
+          colour: "#154360",
+        },
+        {
+          label: "34a",
+          url: "https://example.com/video-11a",
+          colour: "#0e2f44",
+        },
+        {
+          label: "34b",
+          url: "https://example.com/video-11b",
           colour: "#1a5276",
+        },
+        {
+          label: "comic",
+          url: "https://example.com/video-12a",
+          colour: "#154360",
         },
       ];
 
@@ -433,6 +372,10 @@
           link.className = "btn";
           link.href = unit.url;
           link.style.backgroundColor = unit.colour;
+          if (unit.border) {
+            link.style.border = "2px solid " + unit.border;
+            link.style.color = "yellow";
+          }
           link.textContent = unit.label;
           grid.appendChild(link);
         });
