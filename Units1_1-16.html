@@ -246,8 +246,9 @@
         }
 
         .grid {
-          grid-template-columns: repeat(2, 1fr);
-          grid-template-rows: repeat(12, 1fr);
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          grid-template-rows: repeat(8, 1fr);
           gap: clamp(6px, 2vw, 16px);
           width: 100%;
           max-width: 500px;
@@ -288,8 +289,9 @@
         }
 
         .grid {
-          grid-template-columns: repeat(2, 1fr) !important;
-          grid-template-rows: repeat(12, 1fr) !important;
+          display: grid;
+          grid-template-columns: repeat(3, 1fr) !important;
+          grid-template-rows: repeat(8, 1fr) !important;
           gap: clamp(4px, 1.5vw, 10px) !important;
           width: 100% !important;
           max-width: 100% !important;
