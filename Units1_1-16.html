@@ -67,36 +67,6 @@
       }
 
       /* ----------------------------------------------------------
-         BACK BUTTON
-      ---------------------------------------------------------- */
-      .back-btn {
-        font-family: var(--font-chalk);
-        font-weight: bold;
-        color: yellow;
-        background: rgba(0, 0, 0, 0.3);
-        border: 2px solid yellow;
-        border-radius: 10px;
-        text-decoration: none;
-        cursor: pointer;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        -webkit-user-select: none;
-        user-select: none;
-        -webkit-text-stroke: 1px orange;
-        transition:
-          transform 0.1s ease,
-          background 0.15s ease;
-        align-self: flex-start;
-        flex-shrink: 0;
-      }
-
-      .back-btn:active {
-        transform: scale(0.97);
-        background: rgba(0, 0, 0, 0.5);
-      }
-
-      /* ----------------------------------------------------------
          GRID WRAPPER
       ---------------------------------------------------------- */
       .grid-wrapper {
@@ -150,12 +120,6 @@
          LANDSCAPE — 6 × 4
       ---------------------------------------------------------- */
       @media screen and (orientation: landscape) {
-        .back-btn {
-          font-size: clamp(1.2rem, 2vw, 2rem);
-          padding: 0.3em 1em;
-          margin: 1.5vh 0 0 2vw;
-        }
-
         .grid-wrapper {
           flex: 1;
           padding: 1vh 2vw 2vh;
@@ -194,12 +158,6 @@
           max-width: 100vw;
         }
 
-        .back-btn {
-          font-size: clamp(0.7rem, 1.5vw, 1.2rem) !important;
-          padding: 0.15em 0.6em !important;
-          margin: 0.3vh 0 0 2vw !important;
-        }
-
         .grid-wrapper {
           flex: 1 !important;
           padding: 0 2vw 0 !important;
@@ -233,12 +191,6 @@
           overflow-y: auto;
           height: auto;
           min-height: 100dvh;
-        }
-
-        .back-btn {
-          font-size: clamp(1.2rem, 3vw, 2.5rem);
-          padding: 0.4em 1em;
-          margin: 2vw 0 0 4vw;
         }
 
         .grid-wrapper {
@@ -279,12 +231,6 @@
           min-height: 100dvh;
         }
 
-        .back-btn {
-          font-size: clamp(1rem, 4vw, 1.8rem) !important;
-          padding: 0.3em 0.9em !important;
-          margin: 1vw 0 0 4vw !important;
-        }
-
         .grid-wrapper {
           padding: 1vw 4vw 4vw !important;
         }
@@ -313,8 +259,6 @@
   </head>
 
   <body>
-    <a class="back-btn" href="Book1.html">← Back</a>
-
     <div class="grid-wrapper">
       <div class="grid" id="main-grid"></div>
     </div>
@@ -328,6 +272,12 @@
 
     <script>
       const units = [
+        {
+          label: "← Back",
+          url: "Book1.html",
+          colour: "rgba(0,0,0,0.4)",
+          border: "yellow",
+        },
         {
           label: "例",
           url: "https://player.mediadelivery.net/play/597166/fe17a2bc-d48b-472b-b0f1-a78c4cc5f904",
@@ -401,6 +351,10 @@
           link.className = "btn";
           link.href = unit.url;
           link.style.backgroundColor = unit.colour;
+          if (unit.border) {
+            link.style.border = "2px solid " + unit.border;
+            link.style.color = "yellow";
+          }
           link.textContent = unit.label;
           grid.appendChild(link);
         });
