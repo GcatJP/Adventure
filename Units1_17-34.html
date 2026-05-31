@@ -146,6 +146,9 @@
           margin-top: 20px;
           margin-right: 20px;
         }
+        .btn-last {
+          font-size: clamp(0.3rem, 1.5vw, 1rem) !important;
+        }
       }
 
       /* ----------------------------------------------------------
@@ -361,6 +364,7 @@
           label: "comic",
           url: "https://example.com/video-12a",
           colour: "#154360",
+          last: true,
         },
       ];
 
@@ -375,6 +379,9 @@
           if (unit.border) {
             link.style.border = "2px solid " + unit.border;
             link.style.color = "yellow";
+          }
+          if (unit.last) {
+            link.classList.add("btn-last");
           }
           link.textContent = unit.label;
           grid.appendChild(link);
