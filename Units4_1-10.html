@@ -142,14 +142,14 @@
         }
 
         .corner-img {
-          bottom: 0;
-          right: 0;
-          top: auto;
-          width: clamp(50px, 8vw, 110px);
-          margin-bottom: 30px;
-          margin-right: 80px;
+          bottom: 0 !important;
+          right: 0 !important;
+          top: auto !important;
+          width: clamp(50px, 8vw, 110px) !important;
+          margin-bottom: 30px !important;
+          margin-right: 80px !important;
         }
-      }
+
 
       /* ----------------------------------------------------------
          LANDSCAPE IPHONE — 4 × 5  (max-height: 450px)
@@ -220,7 +220,7 @@
           bottom: 40px;
           right: 120px;
           top: auto;
-          width: clamp(50px, 11vw, 110px) !important;
+          width: clamp(50px, 8vw, 90px) !important;
         }
       }
 
@@ -263,7 +263,7 @@
           bottom: 0 !important;
           right: 0 !important;
           top: auto;
-          width: clamp(30px, 6vw, 60px);
+          width: clamp(30px, 6vw, 60px) !important;
           margin-bottom: 10px !important;
           margin-right: 50px !important;
         }
@@ -287,7 +287,7 @@
       const units = [
         {
           label: "Back",
-          url: "Book3.html",
+          url: "Book4.html",
           colour: "rgba(0,0,0,0.4)",
           border: "yellow",
         },
